@@ -1,3 +1,4 @@
+import { HttpStatus } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
@@ -23,8 +24,12 @@ describe('CatsController', () => {
 
   describe('GET /cats', () => {
     it('response string', async () => {
-      const res = await controller.findAll();
-      expect(res).toBeInstanceOf(Array);
+      try {
+        const res = await controller.findAll();
+        expect(res).toBeInstanceOf(Array);
+      } catch (error) {
+        expect(error.status).toBe(HttpStatus.FORBIDDEN);
+      }
     });
   });
 });

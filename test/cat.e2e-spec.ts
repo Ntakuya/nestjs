@@ -15,6 +15,8 @@ describe('CatsController (e2e)', () => {
   });
 
   it('/cats (GET)', () => {
-    return request(app.getHttpServer()).get('/cats').expect(HttpStatus.OK);
+    return request(app.getHttpServer())
+      .get('/cats')
+      .expect(HttpStatus.FORBIDDEN);
   });
 });

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ErrorMessage } from '../core/error-message';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { Cat } from './entities/cat.entity';
@@ -19,7 +20,7 @@ export class CatsService {
     const cat = this.cats.find((_cat) => _cat.id === id);
     if (cat == null) {
       return {
-        error: new Error('ENTITY_NOT_FOUND'),
+        error: new Error(ErrorMessage.EntityNotFound),
         cat: null,
       };
     }
