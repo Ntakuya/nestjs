@@ -9,7 +9,8 @@ export class CatsService {
   private cats: Cat[] = [];
 
   create(createCatDto: CreateCatDto) {
-    return this.cats.push(this.createEntity(createCatDto));
+    this.cats.push(this.createEntity(createCatDto));
+    return this.cats[this.cats.length - 1];
   }
 
   findAll() {
