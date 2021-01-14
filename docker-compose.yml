@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  nest_db:
+    build:
+      dockerfile: ./docker/MysqlDockerfile
+      context: .
+    container_name: nest_db
+    ports:
+      - '3306:3306'
+    restart: always
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'root'
+      MYSQL_DATABASE: 'nest_database'
+  api:
+    container_name: nest_api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    tty: true
+    restart: always
+    ports:
+      - '3000:3000'
+    command: npm run start:dev
+    volumes:
+      - type: bind
+        source: .
+        target: /api
+    depends_on:
+      - nest_db
