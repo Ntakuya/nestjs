@@ -6,7 +6,8 @@
   "license": "MIT",
   "husky": {
     "hooks": {
-      "pre-push": "npm test && npm run lint"
+      "pre-push": "yarn test && yarn run lint",
+      "pre-commit": "yarn format"
     }
   },
   "scripts": {
