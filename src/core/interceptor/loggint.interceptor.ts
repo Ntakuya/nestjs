@@ -14,11 +14,11 @@ export class LoggintInterceptor implements NestInterceptor {
     console.log('Before...');
 
     const now = Date.now();
-    return next
-      .handle()
-      .pipe(tap(() => {
+    return next.handle().pipe(
+      tap(() => {
         // tslint:disable-next-line:no-console
-        console.log(`After... ${Date.now() - now} ms`)
-      }));
+        console.log(`After... ${Date.now() - now} ms`);
+      }),
+    );
   }
 }
