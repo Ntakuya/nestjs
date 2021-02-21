@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from './core/pipes/validation.pipe';
-import { ControllerForGuardModule } from './controller-for-guard/controller-for-guard.module';
 import { LoggintInterceptor } from './core/interceptor/loggint.interceptor';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './core/config/configuration';
@@ -10,7 +9,6 @@ import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
-    ControllerForGuardModule,
     ConfigModule.forRoot({
       load: [configuration],
     }),
