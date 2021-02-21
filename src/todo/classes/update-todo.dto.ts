@@ -1,11 +1,14 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateTodoDto {
+  @ApiProperty()
   @IsString()
   @IsOptional()
-  title: string;
+  title?: string;
 
+  @ApiProperty()
   @IsString()
   @IsOptional()
-  description: string;
+  description?: string;
 }
