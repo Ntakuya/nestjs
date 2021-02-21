@@ -9,6 +9,7 @@ import { LoggintInterceptor } from './core/interceptor/loggint.interceptor';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './core/config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         };
       },
     }),
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [

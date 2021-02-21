@@ -31,3 +31,18 @@ services:
         target: /api
     depends_on:
       - nest_db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    env_file:
+      - .env
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: '${DATABASE_HOST}'
+      PMA_USER: '${DATABASE_USER}'
+      PMA_PASSWORD: '${DATABASE_PASSWORD}'
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
+    depends_on:
+      - nest_db
