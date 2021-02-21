@@ -14,7 +14,10 @@ export class TodoService {
   }
 
   findOne$(todoId: string) {
-    return from(this.todoRepository.findOne(todoId));
+    return from(this.todoRepository.findOneOrFail(todoId)).pipe(
+      map((todo) => ({ todo, error: null })),
+      catchError((error) => of({ error, todo: null })),
+    );
   }
 
   createOne$(createDto: CreateTodoDto) {
