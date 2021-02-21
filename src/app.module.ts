@@ -6,9 +6,17 @@ import { CatsModule } from './cats/cats.module';
 import { ValidationPipe } from './core/pipes/validation.pipe';
 import { ControllerForGuardModule } from './controller-for-guard/controller-for-guard.module';
 import { LoggintInterceptor } from './core/interceptor/loggint.interceptor';
+import { ConfigModule } from '@nestjs/config';
+import configuration from './core/config/configuration';
 
 @Module({
-  imports: [CatsModule, ControllerForGuardModule],
+  imports: [
+    CatsModule,
+    ControllerForGuardModule,
+    ConfigModule.forRoot({
+      load: [configuration],
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
