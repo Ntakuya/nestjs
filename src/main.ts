@@ -8,6 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(app.get(ConfigService).get('port'));
+  await app.listen(app.get(ConfigService).get('port'), '0.0.0.0');
 }
 bootstrap();
