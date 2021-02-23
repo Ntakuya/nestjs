@@ -11,6 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors();
 
   if (app.get(ConfigService).get('env') === 'local') {
     const document = SwaggerModule.createDocument(app, documentConfig());
